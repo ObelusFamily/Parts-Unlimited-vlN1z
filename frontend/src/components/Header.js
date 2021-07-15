@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SimpleImage } from "./SimpleImage";
 
 const LoggedOutView = props => {
   if (!props.currentUser) {
@@ -54,10 +55,11 @@ const LoggedInView = props => {
 
         <li className="nav-item">
           <Link to={`/@${props.currentUser.username}`} className="nav-link">
-            <img
+            <SimpleImage
               src={props.currentUser.image}
               className="user-pic pr-1"
               alt={props.currentUser.username}
+              defaultSrc="https://static.productionready.io/images/smiley-cyrus.jpg"
             />
             {props.currentUser.username}
           </Link>

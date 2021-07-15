@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
+import { SimpleImage } from "./SimpleImage";
 
 const FAVORITED_CLASS = "btn btn-sm btn-primary";
 const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";
@@ -37,7 +38,7 @@ const ItemPreview = props => {
 
   return (
     <div className="card">
-      <img src={item.image} className="card-img-top item-img" />
+      <SimpleImage src={item.image} className="card-img-top item-img" defaultSrc="/placeholder.png" />
       <div className="card-body">
         <Link to={`/item/${item.slug}`} className="preview-link">
           <h3 className="card-title">{item.title}</h3>
