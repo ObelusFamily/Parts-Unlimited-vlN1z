@@ -8,6 +8,7 @@ import {
   ITEM_PAGE_LOADED,
   ITEM_PAGE_UNLOADED
 } from "../../constants/actionTypes";
+import { SimpleImage } from '../SimpleImage';
 
 const mapStateToProps = state => ({
   ...state.item,
@@ -56,7 +57,7 @@ class Item extends React.Component {
         <div className="container page">
           <div className="row">
             <div className="col-3">
-              <img src={this.props.item.image} className="item-img" />
+              <SimpleImage src={this.props.item.image} className="item-img" defaultSrc="/placeholder.png" />
             </div>
             <div className="col-9">
               <div dangerouslySetInnerHTML={markup}></div>
