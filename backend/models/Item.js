@@ -3,7 +3,7 @@ var uniqueValidator = require("mongoose-unique-validator");
 var slug = require("slug");
 var User = mongoose.model("User");
 
-var ItemSchema = new mongoose.Schema(
+const ItemSchema = new mongoose.Schema(
   {
     slug: { type: String, lowercase: true, unique: true },
     title: String,
@@ -59,4 +59,10 @@ ItemSchema.methods.toJSONFor = function(user) {
   };
 };
 
-mongoose.model("Item", ItemSchema);
+ItemSchema.statics.getAll = function() {
+  return Item.find({});
+};
+
+const Item = mongoose.model('Item', ItemSchema);
+
+module.exports = Item;
