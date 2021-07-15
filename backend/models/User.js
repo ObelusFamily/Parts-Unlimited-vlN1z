@@ -4,7 +4,7 @@ var crypto = require("crypto");
 var jwt = require("jsonwebtoken");
 var secret = require("../config").secret;
 
-var UserSchema = new mongoose.Schema(
+const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -38,6 +38,10 @@ var UserSchema = new mongoose.Schema(
 );
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken." });
+
+UserSchema.statics.findByUsername = function(username) {
+  return User.findOne({ username });
+};
 
 UserSchema.methods.validPassword = function(password) {
   var hash = crypto
@@ -127,4 +131,10 @@ UserSchema.methods.isFollowing = function(id) {
   });
 };
 
-mongoose.model("User", UserSchema);
+UserSchema.statics.getAll = function() {
+  return User.find({});
+};
+
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
